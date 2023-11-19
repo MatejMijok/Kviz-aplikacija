@@ -13,8 +13,8 @@
 
   }
 
-  .tabs{
-    --md-sys-color-primary: #006aab;
+  #tabs{
+    --md-sys-color-primary: #9acbff;
     --md-sys-color-surface: #191c1e;
     --md-secondary-tab-active-indicator-height: 3px;
     --md-secondary-tab-label-text-font: system-ui;
@@ -22,12 +22,12 @@
     --md-secondary-tab-container-shape: 10px;
     --md-secondary-tab-hover-label-text-color: #e2e2e6;
     --md-secondary-tab-active-hover-label-text-color: #e2e2e6;
-    --md-secondary-tab-pressed-label-text-color: #006aab;
+    --md-secondary-tab-pressed-label-text-color: #9acbff;
     --md-secondary-tab-active-hover-state-layer-color: #9acbff;
     --md-secondary-tab-hover-state-layer-color: #9acbff;
-    --md-secondary-tab-active-hover-label-text-color: #006aab;
-    --md-secondary-tab-active-label-text-color: #006aab;
-    --md-secondary-tab-active-pressed-label-text-color: #006aab;
+    --md-secondary-tab-active-hover-label-text-color: #9acbff;
+    --md-secondary-tab-active-label-text-color: #9acbff;
+    --md-secondary-tab-active-pressed-label-text-color: #9acbff;
   }
 
   #navbar {
@@ -44,8 +44,61 @@
     color: #e2e2e6;
   }
 
-  #button{
-    --md-sys-color-secondary-container: #9acbff;
+  #primaryTonalButton{
+    --md-sys-color-secondary-container: #004a79;
+    --md-sys-color-on-secondary-container: #d0e4ff;
+
     --md-filled-tonal-button-label-text-font: system-ui;
     --md-filled-tonal-button-label-text-size: 15px;
+  }
+
+  #secondaryTonalButton{
+    --md-sys-color-secondary-container: #3b4857;
+    --md-sys-color-on-secondary-container: #d6e4f7;
+
+    --md-filled-tonal-button-label-text-font: system-ui;
+    --md-filled-tonal-button-label-text-size: 15px;
+  }
+
+  #primaryButton{
+    --md-sys-color-primary: #004a79;
+    --md-sys-color-on-primary: #d0e4ff;
+
+    --md-filled-button-label-text-font: system-ui;
+    --md-fileld-button-label-text-size: 15px;
+  }
+
+  #modalStyle{
+    background-color: #191c1e;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  #modal-header{
+    background-color: #191c1e;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  #modal-body{
+    background-color: #191c1e;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  #modal-footer{
+    background-color: #191c1e;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  #modal-content{
+    background-color: #191c1e;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
   }

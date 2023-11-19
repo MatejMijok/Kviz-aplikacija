@@ -1,61 +1,91 @@
-import logo from './logo.svg';
-import './App.css';
-import '@material/web/all';
-import 'bootstrap/dist/css/bootstrap.css';
-import { useRef, useEffect, useState } from 'react';
+  //import logo from './logo.svg';
+  import './App.css';
+  import '@material/web/all';
+  import 'bootstrap/dist/css/bootstrap.css';
+  import { useRef, useEffect, useState } from 'react';
+  import ConfigureModal from './ConfigureModal';
 
-function App() {
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
-  const myRef = useRef(0);
+  function App() {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const myRef = useRef(0);
+    const [showConfiguration, setShowConfiguration] = useState(false);
 
-  useEffect(() => {
-    myRef.current.addEventListener('change', handleChange);
-  });
+    const handleConfigurationClick = () => {
+      setShowConfiguration(true);
+    }
 
-  const handleChange = (event) =>{
-    setActiveTabIndex(event.target.activeTabIndex);
-  }
+    useEffect(() => {
+      myRef.current.addEventListener('change', handleChange);
+    });
 
-  return (
-    <div class='container-fluid' id='container'>
-      <div class='container-fluid'>
-        <ul class='navbar-nav'>
-          <md-tabs id='tabs' ref={myRef}>
-            <md-secondary-tab class='tabs' id='home-tab' aria-controls='menu-panel' active>Home</md-secondary-tab>
-            <md-secondary-tab class='tabs' id='play-tab' aria-controls='play-panel'>Play</md-secondary-tab>
-            <md-secondary-tab class='tabs' id='stats-tab' aria-controls='stats-panel'>Statistics</md-secondary-tab>
-          </md-tabs>
-        </ul>
-      </div>
+    const handleChange = (event) =>{
+      setActiveTabIndex(event.target.activeTabIndex);
+    }
 
-          <div class='container-fluid m-3' id='home-panel' role='tabpanel' aria-label='home-tab' hidden={activeTabIndex !== 0}>
+    const handleCloseConfiguration = () => {
+      setShowConfiguration(false);
+    };
 
-          </div>
-          <div id='play-panel' role='tabpanel' aria-label='play-tab' hidden={activeTabIndex !== 1}>
-            <p>proba 2</p>
-          </div>
+    return (
+      <div className='container-fluid' id='container'>
+        <div className='container-fluid'>
+          <ul className='navbar-nav'>
+            <md-tabs id='tabs' ref={myRef}>
+              <md-secondary-tab id='tabs' aria-controls='menu-panel' active>Home</md-secondary-tab>
+              <md-secondary-tab id='tabs' aria-controls='play-panel'>Play</md-secondary-tab>
+              <md-secondary-tab id='tabs' aria-controls='stats-panel'>Statistics</md-secondary-tab>
+            </md-tabs>
+          </ul>
+        </div>
 
-          <div id='stats-panel' class='container-fluid' role='tabpanel' aria-label='stats-tab' hidden={activeTabIndex !== 2}>
-            <div class='jumbotron jumbotron-fluid'>
-                <h1 class="display-4 text-center mt-3" id='text'>Welcome!</h1>
-                <p class='lead text-center' id='text'>We appreaciate your enthusiasm but you need to log in or register first!</p>
-                <p class='lead text-center' id='text'>You can log in by clicking the appropriate button below and filling in the form!</p>
+            <div className='container-fluid' id='home-panel' role='tabpanel' aria-label='home-tab' hidden={activeTabIndex !== 0}>
+              <div className='jumbotron jumbotron-fluid'>
+                <h1 className='display-4 text-center mt-3 w-100' id='text'>Welcome to the Quiz!</h1>
+                <p className='lead text-center' id='text'>Press the "Play" button to start playing</p>
+                <p className='lead text-center' id='text'>or press the "Configure" button to adjust settings!</p>
+              </div>
 
-                <div class='container-fluid'>
-                  <div class='row justify-content-md-center'>
-                    <div class='col-md-auto text-center mt-3'>
-                      <md-filled-tonal-button id='button'>Log in</md-filled-tonal-button>
+              <div className='d-flex align-items-center justify-content-center'>
+                <md-filled-button id='primaryButton'>Play</md-filled-button>
+              </div>     
+              <div className='d-flex align-items-center justify-content-center mt-3'>
+                <md-filled-tonal-button 
+                id='secondaryTonalButton' 
+                onClick={handleConfigurationClick}
+                >Configure</md-filled-tonal-button>
+              </div>
+
+              <ConfigureModal show={showConfiguration} handleClose={handleCloseConfiguration} />
+
+            </div>
+
+
+            <div id='play-panel' role='tabpanel' aria-label='play-tab' hidden={activeTabIndex !== 1}>
+              <p className='lead text-center' id='text'>Work in progress</p>
+            </div>
+
+
+            <div id='stats-panel' className='container-fluid' role='tabpanel' aria-label='stats-tab' hidden={activeTabIndex !== 2}>
+              <div className='jumbotron jumbotron-fluid'>
+                  <h1 className="display-4 text-center mt-3" id='text'>Welcome!</h1>
+                  <p className='lead text-center' id='text'>We appreaciate your enthusiasm but you need to log in or register first!</p>
+                  <p className='lead text-center' id='text'>You can log in by clicking the appropriate button below and filling in the form!</p>
+              </div>
+
+              <div className='container-fluid'>
+                  <div className='row justify-content-md-center'>
+                    <div className='col-md-auto text-center mt-3'>
+                      <md-filled-tonal-button id='primaryTonalButton'>Log in</md-filled-tonal-button>
                     </div>
-                    
-                    <div class='col-md-auto text-center mt-3'>
-                      <md-filled-tonal-button id='button'>Register</md-filled-tonal-button>
+                      
+                    <div className='col-md-auto text-center mt-3'>
+                      <md-filled-tonal-button id='primaryTonalButton'>Register</md-filled-tonal-button>
                     </div>
                   </div>
                 </div>
             </div>
-          </div>
-    </div>
-  );
-}
+        </div>
+    );
+  }
 
-export default App;
+  export default App;
