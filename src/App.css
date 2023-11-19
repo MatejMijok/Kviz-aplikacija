@@ -27,6 +27,7 @@
     --md-secondary-tab-hover-state-layer-color: #9acbff;
     --md-secondary-tab-active-hover-label-text-color: #006aab;
     --md-secondary-tab-active-label-text-color: #006aab;
+    --md-secondary-tab-active-pressed-label-text-color: #006aab;
   }
 
   #navbar {
@@ -39,10 +40,12 @@
     position: absolute;
   }
 
-  p{
+  #text{
     color: #e2e2e6;
   }
 
-  h1{
-    color: white;
+  #button{
+    --md-sys-color-secondary-container: #9acbff;
+    --md-filled-tonal-button-label-text-font: system-ui;
+    --md-filled-tonal-button-label-text-size: 15px;
   }
