@@ -13,13 +13,20 @@
 
   }
 
-  #tabs{
-    --md-primary-tab-container-color: #191c1e;
-    --md-primary-tab-outline-color:  #006aab;
-    --md-primary-tab-label-text-color:  white;
-    --md-primary-tab-active-label-text-color: white;
-    --md-primary-tab-active-indicator-color: #006aab;
-    --md-primary-tab-container-shape: 10px;
+  .tabs{
+    --md-sys-color-primary: #006aab;
+    --md-sys-color-surface: #191c1e;
+    --md-secondary-tab-active-indicator-height: 3px;
+    --md-secondary-tab-label-text-font: system-ui;
+    --md-secondary-tab-label-text-color: #e2e2e6;
+    --md-secondary-tab-container-shape: 10px;
+    --md-secondary-tab-hover-label-text-color: #e2e2e6;
+    --md-secondary-tab-active-hover-label-text-color: #e2e2e6;
+    --md-secondary-tab-pressed-label-text-color: #006aab;
+    --md-secondary-tab-active-hover-state-layer-color: #9acbff;
+    --md-secondary-tab-hover-state-layer-color: #9acbff;
+    --md-secondary-tab-active-hover-label-text-color: #006aab;
+    --md-secondary-tab-active-label-text-color: #006aab;
   }
 
   #navbar {
@@ -30,4 +37,12 @@
     background-color: #191c1e;
     height: 100%;
     position: absolute;
+  }
+
+  p{
+    color: #e2e2e6;
+  }
+
+  h1{
+    color: white;
   }
