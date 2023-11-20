@@ -6,6 +6,7 @@ import './App.css';
 
 function ConfigureModal({ show, handleClose }) {
   return (
+    <>
     <div className='container-fluid align-items-center justify-content-center' id='modalStyle'>
       <Modal show={show} onHide={handleClose} id='modal-header  '>
         <Modal.Header id='modalStyle'>
@@ -21,6 +22,7 @@ function ConfigureModal({ show, handleClose }) {
         </Modal.Footer>
       </Modal>
     </div>
+    </>
   );
 }
 
