@@ -68,6 +68,30 @@
     --md-fileld-button-label-text-size: 15px;
   }
 
+  #textField{
+    --md-sys-color-primary: #006aab;
+    --md-sys-typescale-body-large-font: system-ui;
+    --md-filled-text-field-container-color: #bac8da;
+    --md-filled-text-field-focus-active-label-text-color: #006aab;
+    --md-filled-text-field-focus-input-text-color: #006aab;
+    --md-filled-text-field-input-text-color: #006aab;
+    --md-filled-text-field-caret-color: #006aab;
+    --md-filled-text-field-input-text-color: #243240;
+    --md-filled-text-field-focus-input-text-color: #006aab;
+    --md-filled-text-field-label-text-color: #243240;
+    --md-filled-text-field-error-focus-active-input-text-color: #93000a;
+    --md-filled-text-field-error-focus-active-label-text-color: #93000a;
+    --md-filled-text-field-error-focus-active-indicator-color: #93000a;
+    --md-filled-text-field-error-focus-input-text-color: #93000a;
+    --md-filled-text-field-error-focus-label-text-color: #93000a;
+    --md-filled-text-field-error-label-text-color: #93000a;
+    --md-filled-text-field-error-hover-label-text-color: #93000a;
+    --md-filled-text-field-error-input-text-color: #93000a;
+    --md-filled-text-field-error-hover-input-text-color: #93000a;
+  }
+
+
+
   #modalStyle{
     background-color: #191c1e;
     border: none;
