@@ -16,8 +16,7 @@ function LoginModal({ show, handleClose }) {
         <Modal.Body id='modalStyle'>
             <div className='container-fluid d-flex align-items-center justify-content-center'>
                 <div className='d-flex flex-column'>
-                <md-filled-text-field label='Username' type='text' id='textField'></md-filled-text-field>
-                    <md-filled-text-field label='E-mail' type='email' id='textField' class='mt-2'></md-filled-text-field>
+                    <md-filled-text-field label='Username' type='text' id='textField'></md-filled-text-field>
                     <md-filled-text-field label='Password' type='password' id='textField' class='mt-2'></md-filled-text-field>
                 </div>
             </div>
