@@ -8,11 +8,11 @@ function LoginModal({ show, handleClose }) {
   return (
     <>
     <div className='container-fluid align-items-center justify-content-center' id='modalStyle'>
-      <Modal show={show} onHide={handleClose} id='modal-header  '>
+      <Modal show={show} onHide={handleClose} id='modal-header'>
         <Modal.Header id='modalStyle'>
             <Modal.Title id='text'>Log in</Modal.Title>
         </Modal.Header>
-        <form>
+        <form onSubmit={(event) => {event.preventDefault(); handleClose();}}>
         <Modal.Body id='modalStyle'>
             <div className='container-fluid d-flex align-items-center justify-content-center'>
                 <div className='d-flex flex-column'>
@@ -22,7 +22,6 @@ function LoginModal({ show, handleClose }) {
                 </div>
             </div>
         </Modal.Body>
-
         <Modal.Footer id='modalStyle'>
             <md-filled-tonal-button id='secondaryTonalButton' onClick={handleClose}>Cancel</md-filled-tonal-button>
             <md-filled-button id='primaryButton' type='submit'>Log in</md-filled-button>

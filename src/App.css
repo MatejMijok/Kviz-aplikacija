@@ -61,11 +61,26 @@
   }
 
   #primaryButton{
+    display: inline-block;
     --md-sys-color-primary: #004a79;
     --md-sys-color-on-primary: #d0e4ff;
 
     --md-filled-button-label-text-font: system-ui;
-    --md-fileld-button-label-text-size: 15px;
+    --md-filled-button-label-text-size: 15px;
+  }
+
+  #questionButton{
+    --md-sys-color-primary: #004a79;
+    --md-sys-color-on-primary: #d0e4ff;
+
+    --md-filled-button-label-text-font: system-ui;
+    --md-filled-button-label-text-size: 15px;
+    --md-filled-button-disabled-container-color: #bac8da;
+    --md-filled-button-disabled-container-opacity: 1;
+    --md-filled-button-container-height: 60px;
+
+
+    
   }
 
   #textField{

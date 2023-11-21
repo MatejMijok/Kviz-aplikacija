@@ -73,8 +73,8 @@
             </div>
 
 
-            <div id='play-panel' role='tabpanel' aria-label='play-tab' hidden={activeTabIndex !== 1}>
-              <p className='lead text-center' id='text'>Work in progress</p>
+            <div className="container-fluid" id='play-panel' role='tabpanel' aria-label='play-tab' hidden={activeTabIndex !== 1}>
+              <md-filled-button class='container-fluid' id='questionButton' class='mt-3 display-4' disabled>OVO JE VRLO VELIKO PITANJE</md-filled-button>
             </div>
 
 
@@ -91,9 +91,8 @@
                     <md-filled-tonal-button id='primaryTonalButton' class='mt-3'>Register</md-filled-tonal-button>
                   </div>
                 </div>
-
-                <LoginModal show={showLogin} handleClose={handleCloseLogin} />
               </div>
+              <LoginModal show={showLogin} handleClose={handleCloseLogin}/>
             </div>
         </div>
     </>

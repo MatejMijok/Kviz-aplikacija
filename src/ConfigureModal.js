@@ -17,7 +17,7 @@ function ConfigureModal({ show, handleClose }) {
         </Modal.Body>
 
         <Modal.Footer id='modalStyle'>
-          <md-filled-tonal-button id='secondaryTonalButton' onClick={handleClose}>Cancel</md-filled-tonal-button>
+        <md-filled-tonal-button id='secondaryTonalButton' onClick={handleClose}>Cancel</md-filled-tonal-button>
           <md-filled-button id='primaryButton'>Save</md-filled-button>
         </Modal.Footer>
       </Modal>
