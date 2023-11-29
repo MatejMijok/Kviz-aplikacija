@@ -19,11 +19,11 @@
     return (
     <>
               <div className='jumbotron jumbotron-fluid'>
-                <h1 className='display-4 text-center mt-3 w-100' id='text'>Welcome to the Quiz!</h1>
+                <h1 className='display-4 text-center mt-5 w-100' id='text'>Welcome to the Quiz!</h1>
                 <p className='lead text-center' id='text'>Press the "Play" button to start playing</p>
                 <p className='lead text-center' id='text'>or press the "Configure" button to adjust settings!</p>
               </div>
-              <md-filled-button class='container-fluid' id='questionButton' class='mt-3 display-4' disabled>OVO JE VRLO VELIKO PITANJE</md-filled-button>
+
               <div className='container-fluid d-flex align-items-center justify-content-center'>    
                 <div className='d-flex flex-column text-center'>
                   <md-filled-button id='primaryButton' class='mt-3'>Play</md-filled-button>
