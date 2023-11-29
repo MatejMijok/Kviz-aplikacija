@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 
 function Navigation() {
   const navigate = useNavigate();
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [setActiveTabIndex] = useState(0);
   const myRef = useRef(0);
 
   useEffect(() => {
