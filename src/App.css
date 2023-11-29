@@ -41,6 +41,7 @@
   }
 
   #text{
+    margin: 0px;
     color: #e2e2e6;
   }
 
@@ -77,10 +78,17 @@
     --md-filled-button-label-text-size: 15px;
     --md-filled-button-disabled-container-color: #bac8da;
     --md-filled-button-disabled-container-opacity: 1;
-    --md-filled-button-container-height: 60px;
+    --md-filled-button-container-height: 150px;
+  }
+  #answerButton{
+    --md-sys-color-primary: #004a79;
+    --md-sys-color-on-primary: #d0e4ff;
 
-
-    
+    --md-filled-button-label-text-font: system-ui;
+    --md-filled-button-label-text-size: 15px;
+    --md-filled-button-disabled-container-color: #bac8da;
+    --md-filled-button-disabled-container-opacity: 1;
+    --md-filled-button-container-height: 105px;
   }
 
   #textField{
@@ -105,7 +113,11 @@
     --md-filled-text-field-error-hover-input-text-color: #93000a;
   }
 
-
+  #questionText{
+    font-size: xx-large;
+    margin: 0px;
+    
+  }
 
   #modalStyle{
     background-color: #191c1e;
