@@ -8,12 +8,12 @@ function ConfigureModal({ show, handleClose }) {
   return (
     <>
     <div className='container-fluid align-items-center justify-content-center' id='modalStyle'>
-      <Modal show={show} onHide={handleClose} id='modal-header  '>
+      <Modal show={show} onHide={handleClose} id='modal-header'>
         <Modal.Header id='modalStyle'>
           <Modal.Title id='text'>Configuration</Modal.Title>
         </Modal.Header>
         <Modal.Body id='modalStyle'>
-          <p id='text'>nesto napisano</p>
+          <p id='text'>TO DO</p>
         </Modal.Body>
 
         <Modal.Footer id='modalStyle'>
