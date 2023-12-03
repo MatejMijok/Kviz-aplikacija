@@ -68,6 +68,8 @@
 
     --md-filled-button-label-text-font: system-ui;
     --md-filled-button-label-text-size: 15px;
+    --md-filled-button-disabled-container-color: #004a79;
+    --md-filled-button-disabled-label-text-color: #d0e4ff;
   }
 
   #questionButton{
@@ -94,6 +96,7 @@
   #textField{
     --md-sys-color-primary: #006aab;
     --md-sys-typescale-body-large-font: system-ui;
+    
     --md-filled-text-field-container-color: #bac8da;
     --md-filled-text-field-focus-active-label-text-color: #006aab;
     --md-filled-text-field-focus-input-text-color: #006aab;
