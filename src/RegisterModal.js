@@ -71,8 +71,6 @@ function RegisterModal({ show, handleClose }) {
     }));
   };
 
-
-
   const checkUsernameAvailability = async (username) => {
     try {
       const response = await fetch('http://localhost/Web programiranje projekt/checkUsername.php', {
@@ -90,7 +88,7 @@ function RegisterModal({ show, handleClose }) {
     }
   };
 
-  const handleRegistration = async () =>{
+  const handleRegistration = () =>{
   const form = document.getElementById('registerForm');
   const elementsWithErrors = form.querySelectorAll(':invalid');
 
@@ -98,20 +96,23 @@ function RegisterModal({ show, handleClose }) {
     console.log("Form has errors. Cannot submit.");
     return;
   }
-
     try {
-      const response = await fetch('http://localhost/Web programiranje projekt/register.php', {
+      const response = fetch('http://localhost/Web programiranje projekt/register.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+      })
+      .then(_response => response.json())
+      .then(responseData => {
+        if (responseData.success) {
+          console.log("Successful registration");
+        } else {
+          console.log("Registration failed");
+        }
       });
-      if (response.success) {
-        console.log("Successful registration");
-      } else {
-        console.log("Registration failed");
-      }
+      
     } catch (error) {
       console.error("ERROR WHILE REGISTERING: ", error);
     }

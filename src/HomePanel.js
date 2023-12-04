@@ -5,7 +5,7 @@
   import 'bootstrap/dist/css/bootstrap.css';
   import LoginModal from './LoginModal';
   import RegisterModal from './RegisterModal';
-  import {useState} from 'react';
+  import { useState } from 'react';
 
   function HomePanel() {
 
