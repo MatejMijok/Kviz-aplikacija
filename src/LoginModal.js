@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React , { useState }from 'react';
 import { Modal } from 'react-bootstrap';
 import '@material/web/all';
@@ -16,12 +17,14 @@ function LoginModal({ show, handleClose }) {
     password: undefined,
   });
 
+  const [incorrectError, setIncorrectError] = useState(undefined);
+
   const handleInputChange = (e) => {
     const {name, value} = e.target;
     setFormData({ ...formData, [name]: value });
   }
 
-  const checkEmpty = async (e) => {
+  const checkEmpty = (e) => {
   const { name, value } = e.target;
   const isEmpty = value.trim() === '';
   
@@ -55,23 +58,22 @@ function LoginModal({ show, handleClose }) {
         body: JSON.stringify(formData),
       })
       
-      .then(_response => response.json())
+      .then(response => response.json())
       .then(responseData => {
         if (responseData.success) {
           console.log("Successful login");
-          console.log(responseData);
+          localStorage.setItem('sessionData', JSON.stringify(responseData.data));
+          setIncorrectError(undefined);
           handleClose();
         } else {
-          console.log(responseData.message);
+         setIncorrectError(true);
         }
       });
 
     } catch (error) {
       console.error("ERROR WHILE LOGGING IN: ", error);
     }
-
   }
-
   return (
     <>
     <div className='container-fluid align-items-center justify-content-center' id='modalStyle'>
@@ -83,14 +85,14 @@ function LoginModal({ show, handleClose }) {
         <Modal.Body id='modalStyle'>
             <div className='container-fluid d-flex align-items-center justify-content-center'>
                 <div className='d-flex flex-column'>
-                    <md-filled-text-field label='Username' type='text' id='textField' name='username' onInput={handleInputChange} onBlur={ (e) => {checkEmpty(e);}} error={errors.username} required></md-filled-text-field>
-                    <md-filled-text-field label='Password' type='password' id='textField' name='password' class='mt-2' onInput={handleInputChange} onBlur={ (e) => {checkEmpty(e);}} error={errors.password} required></md-filled-text-field>
+                    <md-filled-text-field label='Username' type='text' id='textField' name='username' onInput={handleInputChange} onBlur={ (e) => {checkEmpty(e);}} error={errors.username || incorrectError} required></md-filled-text-field>
+                    <md-filled-text-field label='Password' type='password' id='textField' name='password' class='mt-2' onInput={handleInputChange} onBlur={ (e) => {checkEmpty(e);}} error={errors.password || incorrectError} error-text={"Incorrect username or password"}required></md-filled-text-field>
                 </div>
             </div>
         </Modal.Body>
         <Modal.Footer id='modalStyle'>
             <md-filled-tonal-button id='secondaryTonalButton' onClick={handleClose}>Cancel</md-filled-tonal-button>
-            <md-filled-button id='primaryButton' type='submit' onClick={ () => {handleLogin(); handleClose();}}>Log in</md-filled-button>
+            <md-filled-button id='primaryButton' type='submit' onClick={ () => {handleLogin();}}>Log in</md-filled-button>
         </Modal.Footer> 
         </form>
       </Modal>

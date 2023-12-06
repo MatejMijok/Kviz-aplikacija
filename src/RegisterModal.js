@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import '@material/web/all';
@@ -104,10 +105,12 @@ function RegisterModal({ show, handleClose }) {
         },
         body: JSON.stringify(formData),
       })
-      .then(_response => response.json())
+      .then(response => response.json())
       .then(responseData => {
         if (responseData.success) {
           console.log("Successful registration");
+          localStorage.setItem('sessionData', JSON.stringify(responseData.data));
+          handleClose();
         } else {
           console.log("Registration failed");
         }
@@ -116,7 +119,6 @@ function RegisterModal({ show, handleClose }) {
     } catch (error) {
       console.error("ERROR WHILE REGISTERING: ", error);
     }
-    handleClose();
   }
 
   return (
