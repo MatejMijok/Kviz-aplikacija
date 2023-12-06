@@ -46,6 +46,7 @@
       <h1 className='display-4 text-center mt-5 w-100' id='text'>Welcome {sessionData['fname']} {sessionData['lname']} to the Quiz!</h1>
       <p className='lead text-center mt-3' id='text'>You are currently on the home page but if you want to start playing press the "Play" tab!</p>
       <p className='lead text-center mt-3' id='text'>Pressing the "Play" button will start the quiz and pressing the "Configure" button will allow you to adjust parameters</p>
+      <p className='lead text-center mt-3' id='text'>You can also view your statistics on the "Profile" tab</p>
       <p className='lead text-center mt-3' id='text'>Or if you changed your mind you can log out by pressing the button below</p>
 
       <div className='container-fluid d-flex align-items-center justify-content-center'>

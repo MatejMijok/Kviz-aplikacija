@@ -90,35 +90,35 @@ function RegisterModal({ show, handleClose }) {
   };
 
   const handleRegistration = () =>{
-  const form = document.getElementById('registerForm');
-  const elementsWithErrors = form.querySelectorAll(':invalid');
+    const form = document.getElementById('registerForm');
+    const elementsWithErrors = form.querySelectorAll(':invalid');
 
-  if (elementsWithErrors.length > 0) {
-    console.log("Form has errors. Cannot submit.");
-    return;
-  }
-    try {
-      const response = fetch('http://localhost/Web programiranje projekt/register.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-      .then(response => response.json())
-      .then(responseData => {
-        if (responseData.success) {
-          console.log("Successful registration");
-          localStorage.setItem('sessionData', JSON.stringify(responseData.data));
-          handleClose();
-        } else {
-          console.log("Registration failed");
-        }
-      });
-      
-    } catch (error) {
-      console.error("ERROR WHILE REGISTERING: ", error);
+    if (elementsWithErrors.length > 0) {
+      console.log("Form has errors. Cannot submit.");
+      return;
     }
+      try {
+        const response = fetch('http://localhost/Web programiranje projekt/register.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+        .then(response => response.json())
+        .then(responseData => {
+          if (responseData.success) {
+            console.log("Successful registration");
+            localStorage.setItem('sessionData', JSON.stringify(responseData.data));
+            handleClose();
+          } else {
+            console.log("Registration failed");
+          }
+        });
+        
+      } catch (error) {
+        console.error("ERROR WHILE REGISTERING: ", error);
+      }
   }
 
   return (

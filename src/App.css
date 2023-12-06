@@ -116,10 +116,30 @@
     --md-filled-text-field-error-hover-input-text-color: #93000a;
   }
 
+  md-filled-select{
+    --md-sys-color-primary: #006aab;
+    --md-sys-typescale-body-large-font: system-ui;
+    --md-filled-select-text-field-container-color: #bac8da;
+    --md-filled-select-text-field-focus-active-label-text-color: #006aab;
+    --md-filled-select-text-field-focus-input-text-color: #006aab;
+    --md-filled-select-text-field-input-text-color: #006aab;
+    --md-filled-select-text-field-caret-color: #006aab;
+    --md-filled-select-text-field-input-text-color: #243240;
+    --md-filled-select-text-field-focus-input-text-color: #006aab;
+    --md-filled-select-text-field-label-text-color: #243240;
+  }
+ 
+  md-filled-select::part(menu){
+    --md-sys-color-on-surface: #243240;
+    --md-sys-typescale-body-large-font: system-ui;  
+    --md-menu-item-selected-container-color: #9acbff;
+    --md-menu-item-selected-label-text-color: #243240;
+    --md-menu-container-color: #bac8da;
+  }
+  
   #questionText{
     font-size: xx-large;
     margin: 0px;
-    
   }
 
   #modalStyle{
