@@ -16,12 +16,12 @@ function AddQuestionModal({ show, handleClose }) {
   });
 
   const [errors, setErrors] = useState({
-    questionText: '',
-    answerOne: '',
-    answerTwo: '',
-    answerThree: '',
-    correctAnswer: '',
-    category: '', 
+    questionText: undefined,
+    answerOne: undefined,
+    answerTwo: undefined,
+    answerThree: undefined,
+    correctAnswer: undefined,
+    category: undefined, 
   });
 
   const [categories, setCategories] = useState([]);
@@ -75,6 +75,7 @@ function AddQuestionModal({ show, handleClose }) {
       console.error('Error fetching categories');
       return [];
     }
+
   };
 
   useEffect(() => {
@@ -82,8 +83,10 @@ function AddQuestionModal({ show, handleClose }) {
       const fetchedCategories = await fetchCategories();
       setCategories(fetchedCategories);
     };
-    fetchData();
-  }, []); 
+    if(show){
+      fetchData();
+    }
+  }, [show]); 
 
   const handleQuestion = () =>{
     const form = document.getElementById('addQuestionForm');

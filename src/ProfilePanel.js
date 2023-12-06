@@ -64,7 +64,7 @@
     return (
         <>
         <div className='jumbotron jumbotron-fluid'>
-          <h1 className='display-4 text-center mt-5 w-100' id='text'>Welcome admin {sessionData.username}!</h1>
+          <h1 className='display-4 text-center mt-5 w-100' id='text'>Welcome {sessionData.username}!</h1>
         </div>
 
         <div className='container-fluid d-flex align-items-center justify-content-center'>
@@ -85,6 +85,7 @@
         <>
         <div className='jumbotron jumbotron-fluid'>
           <h1 className='display-4 text-center mt-5 w-100' id='text'>Welcome {sessionData.username}!</h1>
+          <p className="lead text-center mt-3" id="text">UNDER CONSTRUCTION</p>
         </div>
 
         <div className='container-fluid d-flex align-items-center justify-content-center'>

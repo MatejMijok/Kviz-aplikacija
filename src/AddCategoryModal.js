@@ -11,7 +11,7 @@ function AddCategoryModal({ show, handleClose }) {
   });
 
   const [errors, setErrors] = useState({
-    categoryName: '',
+    categoryName: undefined,
   });
 
   const handleInputChange = (e) => {
@@ -109,7 +109,7 @@ function AddCategoryModal({ show, handleClose }) {
         </Modal.Body>
         <Modal.Footer id='modalStyle'>
             <md-filled-tonal-button id='secondaryTonalButton' onClick={ () => {handleClose();}}>Cancel</md-filled-tonal-button>
-            <md-filled-button id='primaryButton' onClick={() => {handleCategory();}}>Register</md-filled-button>
+            <md-filled-button id='primaryButton' onClick={() => {handleCategory();}}>Confirm</md-filled-button>
         </Modal.Footer>
         </form>
       </Modal>

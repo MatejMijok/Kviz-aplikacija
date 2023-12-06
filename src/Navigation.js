@@ -9,6 +9,7 @@ import HomePanel from './HomePanel';
 import PlayPanel from './PlayPanel';
 import ProfilePanel from './ProfilePanel';
 import Questions from './Questions';
+import Results from './Results';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
 function Navigation() {
@@ -58,6 +59,7 @@ function Navigation() {
       <Routes>
         <Route path="/play" element={<div className='container-fluid'><PlayPanel/></div>} />
         <Route path="/play/quiz" element={<div className='container-fluid'><Questions/></div>} />
+        <Route path="/play/quiz/results" element={<div className='container-fluid'><Results/></div>} />
         <Route path="/profile" element={<div className='container-fluid'><ProfilePanel/></div>} />
         <Route path="/" element={<div className='container-fluid'><HomePanel/></div>} />
     </Routes>
