@@ -28,10 +28,10 @@ function Questions() {
   
   const endQuiz = () => {
     sessionData.correctAnswers += correctAnswers;
-    sessionData.questionsAnswered += 5; // CUSTOM BROJ PITANJA PRIVREMENO HARD CODED
+    sessionData.questionsAnswered += currentQuestionIndex+1; // CUSTOM BROJ PITANJA PRIVREMENO HARD CODED
     sessionData.gamesPlayed += 1;
 
-    /* localStorage.setItem("sessionData", JSON.stringifyy(sessionData)); */
+    localStorage.setItem("sessionData", JSON.stringify(sessionData));
     /*
       TO  DO
       SLANJE NA SERVER
