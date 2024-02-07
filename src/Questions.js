@@ -44,7 +44,9 @@ function Questions() {
     <>
       <div className='container-fluid text-center'>
         <md-filled-button id='questionButton' class='mt-3 mb-5 w-100' disabled>
-          <p id='questionText'>{questions[currentQuestionIndex].questionText}?</p>
+          <div class="container w-100 h-100">
+            <p class="questionText" id="questionText">{questions[currentQuestionIndex].questionText}?</p>
+          </div>
         </md-filled-button>
       </div>
 

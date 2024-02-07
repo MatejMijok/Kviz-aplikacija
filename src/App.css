@@ -75,12 +75,13 @@
   #questionButton{
     --md-sys-color-primary: #004a79;
     --md-sys-color-on-primary: #d0e4ff;
-
+    
     --md-filled-button-label-text-font: system-ui;
     --md-filled-button-label-text-size: 15px;
+    --md-filled-button-label-text-line-height: auto;
     --md-filled-button-disabled-container-color: #bac8da;
     --md-filled-button-disabled-container-opacity: 1;
-    --md-filled-button-container-height: 150px;
+    --md-filled-button-container-height: 200px;
   }
   #answerButton{
     --md-sys-color-primary: #004a79;
@@ -88,9 +89,10 @@
 
     --md-filled-button-label-text-font: system-ui;
     --md-filled-button-label-text-size: 15px;
+    --md-filled-button-label-text-line-height: auto;
     --md-filled-button-disabled-container-color: #bac8da;
     --md-filled-button-disabled-container-opacity: 1;
-    --md-filled-button-container-height: 105px;
+    --md-filled-button-container-height: 150px;
   }
 
   #textField{
@@ -138,8 +140,7 @@
   }
   
   #questionText{
-    font-size: xx-large;
-    margin: 0px;
+    font-size: 35px;
   }
 
   #modalStyle{
