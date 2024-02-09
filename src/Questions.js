@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import '@material/web/all';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -10,25 +10,23 @@ function Questions() {
   /* const category = JSON.parse(localStorage.getItem("category")); KADA BUDEM IMPLEMENTIRAO KATEGORIJE BIT CE KORISTENO */
   const questions = JSON.parse(localStorage.getItem("questions"));
 
-  const [correctAnswers, setCorrectAnswers] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  let correctAnswersCount = useRef(0);
 
   const handleNextQuestion = (e) => {
-    console.log(e.target.value);
     if(e.target.value === questions[currentQuestionIndex].correctAnswer){
-      setCorrectAnswers(correctAnswers+1);
-      console.log("Correct!");
+      correctAnswersCount.current += 1;
     }
     if(currentQuestionIndex < questions.length - 1){
-    setCurrentQuestionIndex(currentQuestionIndex+1);
-    }else{
+      setCurrentQuestionIndex(currentQuestionIndex+1);
+    } else {
       endQuiz();
     }
   }
-  
+
   const endQuiz = () => {
-    sessionData.correctAnswers += correctAnswers;
-    sessionData.questionsAnswered += currentQuestionIndex+1; // CUSTOM BROJ PITANJA PRIVREMENO HARD CODED
+    sessionData.correctAnswers += correctAnswersCount.current;
+    sessionData.questionsAnswered += currentQuestionIndex+1;
     sessionData.gamesPlayed += 1;
 
     localStorage.setItem("sessionData", JSON.stringify(sessionData));
