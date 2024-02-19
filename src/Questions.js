@@ -18,7 +18,7 @@ function Questions() {
   const questions = JSON.parse(localStorage.getItem("questions"));
   const category = JSON.parse(localStorage.getItem("category"));
 
-  const filteredQuestions = category && (category.category === "mixed quiz" ? questions : questions.filter(question => parseInt(question.idCategory) === category.id));
+  const filteredQuestions = category === null || category.category === "mixed quiz" ? questions : questions.filter(question => parseInt(question.idCategory) === category.id);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
@@ -59,7 +59,7 @@ function Questions() {
     navigate("/play/quiz/results");
   }
 
-  if (!filteredQuestions || filteredQuestions.length === 0) {
+  if (!filteredQuestions || filteredQuestions.length === 0 || filteredQuestions === null) {
     return (
       <div className='container-fluid text-center'>
         <p className='display-4 text-center mt-5' id="text">THERE ARE NO QUESTIONS FOR THIS CATEGORY!</p>
