@@ -16,31 +16,33 @@ function Questions() {
   const navigate = useNavigate();
   const sessionData = JSON.parse(localStorage.getItem("sessionData"));
   const questions = JSON.parse(localStorage.getItem("questions"));
-  const categories = JSON.parse(localStorage.getItem("categories"));
+  const category = JSON.parse(localStorage.getItem("category"));
+
+  const filteredQuestions = category && (category.category === "mixed quiz" ? questions : questions.filter(question => parseInt(question.idCategory) === category.id));
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
-  let correctAnswersCount = useRef(0);
+  const correctAnswersCount = useRef(0);
   const [answersShuffled, setAnswersShuffled] = useState(false);
 
   useEffect(() => {
-    if (!answersShuffled && questions[currentQuestionIndex]) {
+    if (!answersShuffled && filteredQuestions.length > 0) {
       const answers = [
-        questions[currentQuestionIndex].firstAnswer,
-        questions[currentQuestionIndex].secondAnswer,
-        questions[currentQuestionIndex].correctAnswer,
-        questions[currentQuestionIndex].thirdAnswer
+        filteredQuestions[currentQuestionIndex].firstAnswer,
+        filteredQuestions[currentQuestionIndex].secondAnswer,
+        filteredQuestions[currentQuestionIndex].correctAnswer,
+        filteredQuestions[currentQuestionIndex].thirdAnswer
       ];
       setShuffledAnswers(shuffleArray(answers));
       setAnswersShuffled(true);
     }
-  }, [currentQuestionIndex, questions, answersShuffled]);
-
+  }, [currentQuestionIndex, filteredQuestions, answersShuffled]);
+  
   const handleNextQuestion = (selectedAnswer) => {
-    if (selectedAnswer === questions[currentQuestionIndex].correctAnswer) {
+    if (selectedAnswer === filteredQuestions[currentQuestionIndex].correctAnswer) {
       correctAnswersCount.current += 1;
     }
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < filteredQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setAnswersShuffled(false);
     } else {
@@ -57,12 +59,20 @@ function Questions() {
     navigate("/play/quiz/results");
   }
 
+  if (!filteredQuestions || filteredQuestions.length === 0) {
+    return (
+      <div className='container-fluid text-center'>
+        <p className='display-4 text-center mt-5' id="text">THERE ARE NO QUESTIONS FOR THIS CATEGORY!</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className='container-fluid text-center'>
         <md-filled-button id='questionButton' class='mt-3 mb-5 w-100' disabled>
           <div className="container w-100 h-100">
-            <p class="questionText" id="questionText">{questions[currentQuestionIndex].questionText}?</p>
+            <p class="questionText" id="questionText">{filteredQuestions[currentQuestionIndex].questionText}?</p>
           </div>
         </md-filled-button>
       </div>
@@ -70,7 +80,7 @@ function Questions() {
       <div className='container-fluid text-center'>
         <div className='row'>
           {shuffledAnswers.map((answer, index) => (
-            <div class='col-md-6' key={index}>
+            <div className='col-md-6' key={index}>
               <md-filled-button id='answerButton' class='mt-3 w-100' onClick={() => handleNextQuestion(answer)}>
                 <p id='questionText'>{answer}</p>
               </md-filled-button>

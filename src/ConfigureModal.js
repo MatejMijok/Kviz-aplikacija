@@ -13,8 +13,8 @@ function ConfigureModal({ show, handleClose }) {
   const handleSelectChange = (e) => {
     const selectedIndex = e.target.selectedIndex;
     const selectedCategory = categories[selectedIndex];
-    setCategory(selectedCategory.id);
-    console.log(selectedCategory.id);
+    setCategory(selectedCategory);
+    console.log(selectedCategory);
   };
   
   useEffect(() => {
