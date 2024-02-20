@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Results() {
   const sessionData = JSON.parse(localStorage.getItem('sessionData'));
+  const lastQuiz = JSON.parse(localStorage.getItem('lastQuiz'));
 
   return (
     <>

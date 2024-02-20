@@ -17,7 +17,7 @@ function Questions() {
   const sessionData = JSON.parse(localStorage.getItem("sessionData"));
   const questions = JSON.parse(localStorage.getItem("questions"));
   const category = JSON.parse(localStorage.getItem("category"));
-  const numberOfQuestions = JSON.parse(localStorage.getItem("numberOfQuestions"));
+  const numberOfQuestions = JSON.parse(localStorage.getItem("numberOfQuestions")) || { numberOfQuestions: 5 };
 
   const filteredQuestions = category === null || category.category === "mixed quiz" ? questions : questions.filter(question => parseInt(question.idCategory) === category.id);
 
@@ -27,6 +27,7 @@ function Questions() {
   const [answersShuffled, setAnswersShuffled] = useState(false);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [questionsShuffled, setQuestionShuffled] = useState(false);
+  const selectedAnswers = useRef([]);
 
   useEffect(() => {
     if (!questionsShuffled && filteredQuestions.length > 0) {
@@ -49,6 +50,7 @@ function Questions() {
   }, [currentQuestionIndex, shuffledQuestions, answersShuffled]);
   
   const handleNextQuestion = (selectedAnswer) => {
+    selectedAnswers.current = [...selectedAnswers.current, selectedAnswer];
     if (selectedAnswer === shuffledQuestions[currentQuestionIndex].correctAnswer) {
       correctAnswersCount.current += 1;
     }
@@ -64,9 +66,17 @@ function Questions() {
     sessionData.correctAnswers += correctAnswersCount.current;
     sessionData.questionsAnswered += currentQuestionIndex + 1;
     sessionData.gamesPlayed += 1;
-    sessionData.shuffledQuestions = shuffledQuestions;
 
+    let lastQuiz = {
+      "questions": shuffledQuestions,
+      "answers": selectedAnswers.current,
+    };
+
+    console.log(sessionData)
+    console.log(lastQuiz);
     localStorage.setItem("sessionData", JSON.stringify(sessionData));
+    localStorage.setItem("lastQuiz", JSON.stringify(lastQuiz));
+
     navigate("/play/quiz/results");
   }
 
