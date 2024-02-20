@@ -10,6 +10,12 @@ function ConfigureModal({ show, handleClose }) {
 
   const [categories, setCategories] = useState([]);
 
+  const [numberOfQuestions, setNumberOfQuestions] = useState(5);
+
+  const [errors, setErrors] = useState({
+    numberOfQuestions: undefined,
+  });
+
   const handleSelectChange = (e) => {
     const selectedIndex = e.target.selectedIndex;
     const selectedCategory = categories[selectedIndex];
@@ -17,6 +23,29 @@ function ConfigureModal({ show, handleClose }) {
     console.log(selectedCategory);
   };
   
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setNumberOfQuestions({ ...numberOfQuestions, [name]: value });
+    console.log(numberOfQuestions)
+  }
+
+  const checkIsNumber = (e) => {
+    const numberField = e.target.form['numberOfQuestions'];
+    if(Number.isInteger(parseInt(numberField.value))){
+      numberField.setCustomValidity('');
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        numberOfQuestions: undefined,
+      }));
+    }else{
+      numberField.setCustomValidity('The input is not a number!');
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        numberOfQuestions: 'The input is not a number',
+      }));
+    }
+  }
+
   useEffect(() => {
     const selectElement = document.querySelector('#categorySelect');
     if (selectElement) {
@@ -47,12 +76,21 @@ function ConfigureModal({ show, handleClose }) {
       setCategories(fetchedCategories);
     };
     if(show){
-    fetchData();
+      fetchData();
     }
   }, [show]); 
 
   const handleConfig = () => {
+    const form = document.getElementById('configForm');
+    const elementsWithErrors = form.querySelectorAll(':invalid');
+
+    if (elementsWithErrors.length > 0) {
+      console.log("Form has errors. Cannot submit.");
+      return;
+    }
+
     localStorage.setItem("category", JSON.stringify(category));
+    localStorage.setItem("numberOfQuestions", JSON.stringify(numberOfQuestions));
     handleClose();
   }
 
@@ -74,6 +112,7 @@ function ConfigureModal({ show, handleClose }) {
                       </md-select-option>
                     ))}
                   </md-filled-select>
+                  <md-filled-text-field value="5" label="Number of questions" type='number' id='textField' name='numberOfQuestions' class="mt-2" onInput={handleInputChange} onBlur={ (e) => {checkIsNumber(e);}} error={errors.numberOfQuestions}></md-filled-text-field>
                 </div>
               </div>
             </Modal.Body>
