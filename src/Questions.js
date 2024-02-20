@@ -24,25 +24,35 @@ function Questions() {
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const correctAnswersCount = useRef(0);
   const [answersShuffled, setAnswersShuffled] = useState(false);
+  const [shuffledQuestions, setShuffledQuestions] = useState([]);
+  const [questionsShuffled, setQuestionShuffled] = useState(false);
 
   useEffect(() => {
-    if (!answersShuffled && filteredQuestions.length > 0) {
+    if (!questionsShuffled && filteredQuestions.length > 0) {
+      setShuffledQuestions(shuffleArray(filteredQuestions));
+      setQuestionShuffled(true);
+    }
+  }, [currentQuestionIndex, filteredQuestions, questionsShuffled]);
+  
+  useEffect(() => {
+    console.log(shuffledQuestions);
+    if (!answersShuffled && shuffledQuestions.length > 0) {
       const answers = [
-        filteredQuestions[currentQuestionIndex].firstAnswer,
-        filteredQuestions[currentQuestionIndex].secondAnswer,
-        filteredQuestions[currentQuestionIndex].correctAnswer,
-        filteredQuestions[currentQuestionIndex].thirdAnswer
+        shuffledQuestions[currentQuestionIndex].firstAnswer,
+        shuffledQuestions[currentQuestionIndex].secondAnswer,
+        shuffledQuestions[currentQuestionIndex].correctAnswer,
+        shuffledQuestions[currentQuestionIndex].thirdAnswer
       ];
       setShuffledAnswers(shuffleArray(answers));
       setAnswersShuffled(true);
     }
-  }, [currentQuestionIndex, filteredQuestions, answersShuffled]);
+  }, [currentQuestionIndex, shuffledQuestions, answersShuffled]);
   
   const handleNextQuestion = (selectedAnswer) => {
-    if (selectedAnswer === filteredQuestions[currentQuestionIndex].correctAnswer) {
+    if (selectedAnswer === shuffledQuestions[currentQuestionIndex].correctAnswer) {
       correctAnswersCount.current += 1;
     }
-    if (currentQuestionIndex < filteredQuestions.length - 1) {
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setAnswersShuffled(false);
     } else {
@@ -59,7 +69,7 @@ function Questions() {
     navigate("/play/quiz/results");
   }
 
-  if (!filteredQuestions || filteredQuestions.length === 0 || filteredQuestions === null) {
+  if (!shuffledQuestions || shuffledQuestions.length === 0 || shuffledQuestions === null) {
     return (
       <div className='container-fluid text-center'>
         <p className='display-4 text-center mt-5' id="text">THERE ARE NO QUESTIONS FOR THIS CATEGORY!</p>
@@ -72,7 +82,7 @@ function Questions() {
       <div className='container-fluid text-center'>
         <md-filled-button id='questionButton' class='mt-3 mb-5 w-100' disabled>
           <div className="container w-100 h-100">
-            <p class="questionText" id="questionText">{filteredQuestions[currentQuestionIndex].questionText}?</p>
+            <p class="questionText" id="questionText">{shuffledQuestions[currentQuestionIndex].questionText}?</p>
           </div>
         </md-filled-button>
       </div>
