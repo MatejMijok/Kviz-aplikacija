@@ -5,7 +5,7 @@ import '@material/web/all';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-function ChangeUsernameModal({ show, handleClose }) {
+function ChangeUserDataModal({ show, handleClose }) {
   const sessionData = JSON.parse(localStorage.getItem("sessionData"));
   const [formData, setFormData] = useState({
     username: '',
@@ -20,6 +20,19 @@ function ChangeUsernameModal({ show, handleClose }) {
     fname: undefined,
     lname: undefined,
   });
+
+  useEffect(() => {
+    if (sessionData) {
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        username: sessionData.username,
+        email: sessionData.email,
+        fname: sessionData.fname,
+        lname: sessionData.lname,
+      }));
+    }
+    // eslint-disable-next-line
+  }, []); 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -137,4 +150,4 @@ function ChangeUsernameModal({ show, handleClose }) {
   );
 }
 
-export default ChangeUsernameModal;
+export default ChangeUserDataModal;

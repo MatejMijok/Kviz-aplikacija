@@ -8,6 +8,7 @@
   import AddQuestionModal from './AddQuestionModal';
   import AddCategoryModal from './AddCategoryModal';
   import ChangeUserDataModal from './ChangeUserDataModal';
+  import EditCategoryModal from './EditCategoryModal';
   import {useState} from 'react';
 
   function HomePanel() {
@@ -17,6 +18,7 @@
   const [showRegister, setShowRegister] = useState(false);
   const [showAddQuestion, setShowAddQuestion] = useState(false);
   const [showAddCategory, setShowAddCategory] = useState(false);
+  const [showEditCategory, setShowEditCategory] = useState(false);
   const [showChangeUserData, setShowChangeUserData] = useState(false);
   const [counter, setCounter] = useState(0);
   
@@ -52,6 +54,14 @@
     setShowAddCategory(false);
   }
 
+  const handleEditCategoryClick = () => {
+    setShowEditCategory(true);
+  }
+
+  const handleCloseEditCategory = () => {
+    setShowEditCategory(false);
+  }
+
   const handleChangeUserDataClick = () => {
     setShowChangeUserData(true);
   }
@@ -74,13 +84,14 @@
     return (
         <>
         <div className='jumbotron jumbotron-fluid'>
-          <h1 className='display-4 text-center mt-5 w-100' id='text'>Welcome {sessionData.username}!</h1>
+          <h1 className='display-4 text-center mt-5 w-100' id='text'>Welcome admin {sessionData.username}!</h1>
         </div>
 
         <div className='container-fluid d-flex align-items-center justify-content-center'>
           <div className='d-flex flex-column text-center'>
             <md-filled-tonal-button id='primaryTonalButton' onClick={handleAddQuestionClick} class='mt-3'>Add question</md-filled-tonal-button>
             <md-filled-tonal-button id='primaryTonalButton' onClick={handleAddCategoryClick} class='mt-3'>Add category</md-filled-tonal-button>
+            <md-filled-tonal-button id='primaryTonalButton' onClick={handleEditCategoryClick} class='mt-3'>Edit category</md-filled-tonal-button>
             <md-filled-tonal-button id='primaryTonalButton' onClick={handleChangeUserDataClick} class='mt-3'>Edit profile</md-filled-tonal-button>
             <md-filled-tonal-button id='primaryTonalButton' onClick={handleLogoutClick} class='mt-3'>Log out</md-filled-tonal-button>
           </div>
@@ -97,6 +108,7 @@
         
         <AddQuestionModal show={showAddQuestion} handleClose={handleCloseAddQuestion} />
         <AddCategoryModal show={showAddCategory} handleClose={handleCloseAddCategory} />
+        <EditCategoryModal show={showEditCategory} handleClose={handleCloseEditCategory} />
         <ChangeUserDataModal show={showChangeUserData} handleClose={handleCloseChangeUserData} />
         </>
         );
