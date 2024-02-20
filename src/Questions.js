@@ -62,6 +62,28 @@ function Questions() {
     }
   }
 
+  const updateUserStatistics = async () =>{
+    try {
+      const response = fetch('http://localhost/Web programiranje projekt/updateUserStats.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sessionData),
+      })
+      .then(response => response.json())
+      .then(responseData => {
+        if (responseData.success){
+          console.log(responseData);
+        } else {
+          console.log(responseData);
+        }
+      });
+    } catch (error) {
+      console.error("ERROR WHILE UPDATING DATA: ", error);
+    } 
+  }
+
   const endQuiz = () => {
     sessionData.correctAnswers += correctAnswersCount.current;
     sessionData.questionsAnswered += currentQuestionIndex + 1;
@@ -72,12 +94,11 @@ function Questions() {
       "answers": selectedAnswers.current,
     };
 
-    console.log(sessionData)
-    console.log(lastQuiz);
     localStorage.setItem("sessionData", JSON.stringify(sessionData));
     localStorage.setItem("lastQuiz", JSON.stringify(lastQuiz));
+    updateUserStatistics()
+    .then(navigate("/play/quiz/results"));
 
-    navigate("/play/quiz/results");
   }
 
   if (!shuffledQuestions || shuffledQuestions.length === 0 || shuffledQuestions === null) {
