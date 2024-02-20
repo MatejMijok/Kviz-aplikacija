@@ -33,12 +33,9 @@
   #navbar {
     background-color: #191c1e;
   }
+  
 
-  #container{
-    background-color: #191c1e;
-    height: 100%;
-    position: absolute;
-  }
+
 
   #text{
     margin: 0px;
