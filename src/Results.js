@@ -24,21 +24,22 @@ function Results() {
     <>
       <div className='container-fluid text-center mt-5'>
         <h1 id="text">Quiz Results</h1>
-        <h4 className='text-center mt-2' id='text' >Total questions: {totalQuestions}</h4>
-        <h4 className='text-center mt-2' id='text' >Correct answers: {correctAnswers}/{totalQuestions}</h4>
+        <h4 className='text-center mt-2' id='text'>Total questions: {totalQuestions}</h4>
+        <h4 className='text-center mt-2' id='text'>Correct answers: {correctAnswers}/{totalQuestions}</h4>
       </div>
-      <div className="container-fluid text-center mt-5">
+      <div className="container-fluid text-center mt-5 mb-5">
         <h2 id="text">Answer Sheet</h2>
-          {lastQuiz && lastQuiz.questions.map((question, index) => (
-            <div key={index} className="question">
-              <h3 id="text" className='text-center mt-3'>{index + 1}. {question.questionText}</h3>
-              <h4 id="text" className='text-center mt-3'>Correct Answer: {question.correctAnswer}</h4>
-              <h4 id="text" className='text-center mt-3'>Your Answer: {lastQuiz.answers[index]}</h4>
-            </div>
-          ))}
-        </div>
+        {lastQuiz && lastQuiz.answers.map((answer, index) => (
+          <div key={index} className="question">
+            <h3 id="text" className='text-center mt-3'>{index + 1}. {lastQuiz.questions[index].questionText}</h3>
+            <h4 id="text" className='text-center mt-3'>Correct Answer: {lastQuiz.questions[index].correctAnswer}</h4>
+            <h4 id="text" className='text-center mt-3'>Your Answer: {answer}</h4>
+          </div>
+        ))}
+      </div>
     </>
   );
+  
 }
 
 export default Results;
