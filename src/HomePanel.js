@@ -6,8 +6,10 @@
   import LoginModal from './LoginModal';
   import RegisterModal from './RegisterModal';
   import { useState, useEffect } from 'react';
+  import config from './config';
 
   function HomePanel() {
+  const apiKey = config.apiKey;
   const sessionData = JSON.parse(localStorage.getItem('sessionData'));
   const [position, setPosition] = useState({latitude: null, longitude: null});
   const [showLogin, setShowLogin] = useState(false);
@@ -59,7 +61,7 @@
     const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '8377aa1e07msh7ecdf0552d852c8p1a8ea4jsn4784004f7905',
+      'X-RapidAPI-Key': apiKey,
       'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
       }
     };
