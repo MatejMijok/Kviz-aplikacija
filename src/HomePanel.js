@@ -74,10 +74,10 @@
   }
   }
 
-/*   useEffect(() => {
+  useEffect(() => {
     fetchData();
   }, [position.latitude, position.longitude])
- */
+
   if(sessionData != null){
     return (
     <>
