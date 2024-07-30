@@ -50,7 +50,7 @@ function LoginModal({ show, handleClose }) {
     }
 
     try {
-      const response = fetch('http://localhost/Web programiranje projekt/login.php', {
+      const response = fetch('http://localhost/Zavrsni rad/login.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

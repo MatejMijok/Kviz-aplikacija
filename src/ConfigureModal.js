@@ -60,7 +60,7 @@ function ConfigureModal({ show, handleClose }) {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost/Web programiranje projekt/fetchCategories.php');
+      const response = await fetch('http://localhost/Zavrsni rad/fetchCategories.php');
       const data = await response.json();
       console.log(data);
       return data.categories;

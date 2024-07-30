@@ -28,7 +28,7 @@ function PlayPanel() {
 
   const fetchQuestions = () => {
     try {
-      const response = fetch('http://localhost/Web programiranje projekt/fetchQuestions.php', {
+      const response = fetch('http://localhost/Zavrsni rad/fetchQuestions.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

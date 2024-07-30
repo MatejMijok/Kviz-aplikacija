@@ -74,7 +74,7 @@ function RegisterModal({ show, handleClose }) {
 
   const checkUsernameAvailability = async (username) => {
     try {
-      const response = await fetch('http://localhost/Web programiranje projekt/checkUsername.php', {
+      const response = await fetch('http://localhost/Zavrsni rad/checkUsername.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ function RegisterModal({ show, handleClose }) {
       return;
     }
       try {
-        const response = fetch('http://localhost/Web programiranje projekt/register.php', {
+        const response = fetch('http://localhost/Zavrsni rad/register.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

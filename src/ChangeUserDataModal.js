@@ -66,7 +66,7 @@ function ChangeUserDataModal({ show, handleClose }) {
 
   const checkUsernameAvailability = async (username) => {
     try {
-      const response = await fetch('http://localhost/Web programiranje projekt/checkUsername.php', {
+      const response = await fetch('http://localhost/Zavrsni rad/checkUsername.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ function ChangeUserDataModal({ show, handleClose }) {
             "user": sessionData,
             "newData": formData,
         }
-        const response = fetch('http://localhost/Web programiranje projekt/updateUserData.php', {
+        const response = fetch('http://localhost/Zavrsni rad/updateUserData.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

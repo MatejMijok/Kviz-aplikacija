@@ -17,7 +17,7 @@ function Questions() {
   const sessionData = JSON.parse(localStorage.getItem("sessionData"));
   const questions = JSON.parse(localStorage.getItem("questions"));
   const category = JSON.parse(localStorage.getItem("category"));
-  const numberOfQuestions = JSON.parse(localStorage.getItem("numberOfQuestions")) || { numberOfQuestions: 5 };
+  const numberOfQuestions = JSON.parse(localStorage.getItem("numberOfQuestions"))?.numberOfQuestions || 5;
 
   const filteredQuestions = category === null || category.category === "mixed quiz" ? questions : questions.filter(question => parseInt(question.idCategory) === category.id);
 
@@ -31,11 +31,11 @@ function Questions() {
 
   useEffect(() => {
     if (!questionsShuffled && filteredQuestions.length > 0) {
-      setShuffledQuestions(shuffleArray(filteredQuestions));
+      setShuffledQuestions(shuffleArray(filteredQuestions.slice(0, numberOfQuestions)));
       setQuestionShuffled(true);
     }
-  }, [currentQuestionIndex, filteredQuestions, questionsShuffled]);
-  
+  }, [filteredQuestions, numberOfQuestions, questionsShuffled]);
+
   useEffect(() => {
     if (!answersShuffled && shuffledQuestions.length > 0) {
       const answers = [
@@ -48,13 +48,13 @@ function Questions() {
       setAnswersShuffled(true);
     }
   }, [currentQuestionIndex, shuffledQuestions, answersShuffled]);
-  
+
   const handleNextQuestion = (selectedAnswer) => {
     selectedAnswers.current = [...selectedAnswers.current, selectedAnswer];
     if (selectedAnswer === shuffledQuestions[currentQuestionIndex].correctAnswer) {
       correctAnswersCount.current += 1;
     }
-    if (currentQuestionIndex < shuffledQuestions.length - 1 && currentQuestionIndex < numberOfQuestions.numberOfQuestions - 1 ) {
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setAnswersShuffled(false);
     } else {
@@ -62,26 +62,20 @@ function Questions() {
     }
   }
 
-  const updateUserStatistics = async () =>{
+  const updateUserStatistics = async () => {
     try {
-      const response = fetch('http://localhost/Web programiranje projekt/updateUserStats.php', {
+      const response = await fetch('http://localhost/Zavrsni rad/updateUserStats.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(sessionData),
-      })
-      .then(response => response.json())
-      .then(responseData => {
-        if (responseData.success){
-          console.log(responseData);
-        } else {
-          console.log(responseData);
-        }
       });
+      const responseData = await response.json();
+      console.log(responseData);
     } catch (error) {
       console.error("ERROR WHILE UPDATING DATA: ", error);
-    } 
+    }
   }
 
   const endQuiz = () => {
@@ -97,11 +91,10 @@ function Questions() {
     localStorage.setItem("sessionData", JSON.stringify(sessionData));
     localStorage.setItem("lastQuiz", JSON.stringify(lastQuiz));
     updateUserStatistics()
-    .then(navigate("/play/quiz/results"));
-
+      .then(() => navigate("/play/quiz/results"));
   }
 
-  if (!shuffledQuestions || shuffledQuestions.length === 0 || shuffledQuestions === null) {
+  if (!shuffledQuestions || shuffledQuestions.length === 0) {
     return (
       <div className='container-fluid text-center'>
         <p className='display-4 text-center mt-5' id="text">THERE ARE NO QUESTIONS FOR THIS CATEGORY!</p>
@@ -114,7 +107,7 @@ function Questions() {
       <div className='container-fluid text-center'>
         <md-filled-button id='questionButton' class='mt-3 mb-5 w-100' disabled>
           <div className="container w-100 h-100">
-            <p class="questionText" id="questionText">{shuffledQuestions[currentQuestionIndex].questionText}</p>
+            <p className="questionText" id="questionText">{shuffledQuestions[currentQuestionIndex].questionText}</p>
           </div>
         </md-filled-button>
       </div>

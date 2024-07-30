@@ -57,7 +57,7 @@ function EditCategoryModal({ show, handleClose }) {
 
   const checkCategoryAvailability = async (categoryName) => {
     try {
-      const response = await fetch('http://localhost/Web programiranje projekt/checkCategory.php', {
+      const response = await fetch('http://localhost/Zavrsni rad/checkCategory.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function EditCategoryModal({ show, handleClose }) {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost/Web programiranje projekt/fetchCategories.php');
+      const response = await fetch('http://localhost/Zavrsni rad/fetchCategories.php');
       const data = await response.json();
       console.log(data);
       return data.categories;
@@ -121,7 +121,7 @@ function EditCategoryModal({ show, handleClose }) {
       return;
     }
       try {
-        const response = fetch('http://localhost/Web programiranje projekt/editCategory.php', {
+        const response = fetch('http://localhost/Zavrsni rad/editCategory.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

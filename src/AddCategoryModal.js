@@ -48,7 +48,7 @@ function AddCategoryModal({ show, handleClose }) {
 
   const checkCategoryAvailability = async (categoryName) => {
     try {
-      const response = await fetch('http://localhost/Web programiranje projekt/checkCategory.php', {
+      const response = await fetch('http://localhost/Zavrsni rad/checkCategory.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ function AddCategoryModal({ show, handleClose }) {
     return;
   }
     try {
-      const response = fetch('http://localhost/Web programiranje projekt/addCategory.php', {
+      const response = fetch('http://localhost/Zavrsni rad/addCategory.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
