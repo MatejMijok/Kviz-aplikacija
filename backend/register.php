@@ -5,6 +5,11 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 $data = json_decode(file_get_contents("php://input"), true);
 
 $username = $data["username"];
@@ -12,8 +17,19 @@ $password = $data["password"];
 $email = $data["email"];
 $fname = $data["fname"];
 $lname = $data["lname"];
-$userRole = "user";
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+$checkCountStmt = $conn->prepare("SELECT COUNT(*) as userCount FROM users");
+$checkCountStmt->execute();
+$countResult = $checkCountStmt->get_result();
+$row = $countResult->fetch_assoc();
+$checkCountStmt->close();
+
+if ($row['userCount'] == 0) {
+    $userRole = "admin";
+} else {
+    $userRole = "user";
+}
 
 $checkStmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
 $checkStmt->bind_param("s", $username);

@@ -40,7 +40,7 @@
         thirdAnswer VARCHAR(255) NOT NULL,
         correctAnswer VARCHAR(255) NOT NULL,
         PRIMARY KEY (id),
-        FOREIGN KEY (idCategory) REFERENCES categories(id) on delete cascade
+        FOREIGN KEY (idCategory) REFERENCES categories(id) ON DELETE CASCADE
     )';
 
     if (!$conn->query($sql)) {
@@ -52,7 +52,7 @@
         idUser INT,
         lastLogin DATETIME DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
-        FOREIGN KEY (idUser) REFERENCES users(id) on delete cascade
+        FOREIGN KEY (idUser) REFERENCES users(id) ON DELETE CASCADE
     )';
 
     if (!$conn->query($sql)) {
@@ -66,7 +66,7 @@ $sql = 'CREATE TABLE IF NOT EXISTS userstatistics(
         questionsAnswered INT DEFAULT 0,
         correctAnswers INT DEFAULT 0,
         PRIMARY KEY (id),
-        FOREIGN KEY (idUser) REFERENCES users(id) on delete cascade
+        FOREIGN KEY (idUser) REFERENCES users(id) ON DELETE CASCADE
     )';
 
     if (!$conn->query($sql)) {

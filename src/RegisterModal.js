@@ -126,7 +126,7 @@ function RegisterModal({ show, handleClose }) {
     <div className='container-fluid align-items-center justify-content-center' id='modalStyle'>
       <Modal show={show} onHide={handleClose} id='modal-header'>
         <Modal.Header id='modalStyle'>
-            <Modal.Title id='text'>Log in</Modal.Title>
+            <Modal.Title id='text'>Register</Modal.Title>
         </Modal.Header>
         <form onSubmit={ (e) => {e.preventDefault();}} id="registerForm">
         <Modal.Body id='modalStyle'>

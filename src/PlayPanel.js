@@ -12,7 +12,7 @@ function PlayPanel() {
   const sessionData = JSON.parse(localStorage.getItem('sessionData'));
   const navigate = useNavigate();
   const [showConfiguration, setShowConfiguration] = useState(false);
-  const [showAreYouSure, setShowAreYouSure] = useState(false);
+  const [showLoginAlert, setShowLoginAlert] = useState(false);
 
   const handleConfigurationClick = () => {
     setShowConfiguration(true);
@@ -22,8 +22,17 @@ function PlayPanel() {
     setShowConfiguration(false);
   };
 
-  const handleCloseAreYouSure = () => {
-    setShowAreYouSure(false);
+  const handleCloseLoginAlert = () => {
+    setShowLoginAlert(false);
+  }
+
+  const handlePlayClick = () => {
+    if(sessionData == null){
+      setShowLoginAlert(true);
+    }
+    else{
+      fetchQuestions();
+    }
   }
 
   const fetchQuestions = () => {
@@ -46,17 +55,8 @@ function PlayPanel() {
     }catch (error) {
       console.error("Error while grabbing questions: ", error);
     }
-      
   }
 
-  const handlePlayClick = () => {
-    if(sessionData == null){
-      setShowAreYouSure(true);
-    }
-    else{
-      fetchQuestions();
-    }
-  }
   return (
   <>
   <div className='jumbotron jumbotron-fluid'>
@@ -71,7 +71,7 @@ function PlayPanel() {
     </div>
   </div>    
   <ConfigureModal show={showConfiguration} handleClose={handleCloseConfiguration} />
-  <LoginAlertModal show={showAreYouSure} handleClose={handleCloseAreYouSure} />
+  <LoginAlertModal show={showLoginAlert} handleClose={handleCloseLoginAlert} />
   </>
   );
 }

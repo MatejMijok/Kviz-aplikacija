@@ -19,7 +19,9 @@ function Questions() {
   const category = JSON.parse(localStorage.getItem("category"));
   const numberOfQuestions = JSON.parse(localStorage.getItem("numberOfQuestions"))?.numberOfQuestions || 5;
 
-  const filteredQuestions = category === null || category.category === "mixed quiz" ? questions : questions.filter(question => parseInt(question.idCategory) === category.id);
+
+  const filteredQuestions = (!category || !category.id || category.category === "mixed quiz") ? 
+  questions : questions.filter(question => Number(question.idCategory) === Number(category.id));
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
@@ -31,7 +33,7 @@ function Questions() {
 
   useEffect(() => {
     if (!questionsShuffled && filteredQuestions.length > 0) {
-      setShuffledQuestions(shuffleArray(filteredQuestions.slice(0, numberOfQuestions)));
+      setShuffledQuestions(shuffleArray(filteredQuestions).slice(0, numberOfQuestions));
       setQuestionShuffled(true);
     }
   }, [filteredQuestions, numberOfQuestions, questionsShuffled]);

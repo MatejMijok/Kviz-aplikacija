@@ -108,18 +108,17 @@ function EditCategoryModal({ show, handleClose }) {
   const handleEditCategory = () =>{
     const form = document.getElementById('editCategory');
     const elementsWithErrors = form.querySelectorAll(':invalid');
+  
+    if (elementsWithErrors.length > 0) {
+      console.log("Form has errors. Cannot submit.");
+      return;
+    }
 
     let data = {
       'category': category,
       'newCategory': newCategoryName,
     };
     
-    console.log(data.newCategory.categoryName);
-  
-    if (elementsWithErrors.length > 0) {
-      console.log("Form has errors. Cannot submit.");
-      return;
-    }
       try {
         const response = fetch('http://localhost/Zavrsni rad/editCategory.php', {
           method: 'POST',
@@ -138,16 +137,51 @@ function EditCategoryModal({ show, handleClose }) {
         });
         
       } catch (error) {
-        console.error("ERROR WHILE ADDING CATEGORY: ", error);
+        console.error("ERROR WHILE UPDATING CATEGORY: ", error);
       }
     }
   
+  const handleDeleteCategory = () => {
+    const form = document.getElementById('editCategory');
+    const elementsWithErrors = form.querySelectorAll(':invalid');
+
+    if (elementsWithErrors.length > 0) {
+      console.log("Form has errors. Cannot submit.");
+      return;
+    }
+
+    let data = {
+      'category': category.id,
+    };
+  
+      try {
+        const response = fetch('http://localhost/Zavrsni rad/deleteCategory.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(responseData => {
+          if (responseData.success) {
+            handleClose();
+          } else {
+            console.log("Deleting category failed");
+          }
+        });
+        
+      } catch (error) {
+        console.error("ERROR WHILE DELETING CATEGORY: ", error);
+      }
+  }
+    
   return (
     <>
       <div className='container-fluid align-items-center justify-content-center' id='modalStyle'>
         <Modal show={show} onHide={handleClose} id='modal-header'>
           <Modal.Header id='modalStyle'>
-            <Modal.Title id='text'>Configure the quiz</Modal.Title>
+            <Modal.Title id='text'>Edit category</Modal.Title>
           </Modal.Header>
           <form onSubmit={(e) => { e.preventDefault(); }} id="editCategory">
             <Modal.Body id='modalStyle'>
@@ -165,6 +199,7 @@ function EditCategoryModal({ show, handleClose }) {
               </div>
             </Modal.Body>
             <Modal.Footer id='modalStyle'>
+              <md-filled-button id='errorButton' onClick={handleDeleteCategory}>Delete</md-filled-button>
               <md-filled-tonal-button id='secondaryTonalButton' onClick={handleClose}>Cancel</md-filled-tonal-button>
               <md-filled-button id='primaryButton' onClick={handleEditCategory}>Save</md-filled-button>
             </Modal.Footer>

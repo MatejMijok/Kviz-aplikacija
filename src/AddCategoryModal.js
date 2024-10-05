@@ -97,7 +97,7 @@ function AddCategoryModal({ show, handleClose }) {
     <div className='container-fluid align-items-center justify-content-center' id='modalStyle'>
       <Modal show={show} onHide={handleClose} id='modal-header'>
         <Modal.Header id='modalStyle'>
-            <Modal.Title id='text'>Log in</Modal.Title>
+            <Modal.Title id='text'>Add a category</Modal.Title>
         </Modal.Header>
         <form onSubmit={ (e) => {e.preventDefault();}} id="categoryForm">
         <Modal.Body id='modalStyle'>

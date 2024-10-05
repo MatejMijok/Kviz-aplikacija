@@ -9,10 +9,10 @@
   import AddCategoryModal from './AddCategoryModal';
   import ChangeUserDataModal from './ChangeUserDataModal';
   import EditCategoryModal from './EditCategoryModal';
+  import DeleteQuestionModal from './DeleteQuestionModal';
   import {useState} from 'react';
 
-  function HomePanel() {
-  
+  function ProfilePanel() {
   const sessionData = JSON.parse(localStorage.getItem("sessionData"));   
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -20,6 +20,7 @@
   const [showAddCategory, setShowAddCategory] = useState(false);
   const [showEditCategory, setShowEditCategory] = useState(false);
   const [showChangeUserData, setShowChangeUserData] = useState(false);
+  const [showDeleteQuestion, setShowDeleteQuestion] = useState(false);
   const [counter, setCounter] = useState(0);
   
   const handleLoginClick = () => {
@@ -62,6 +63,14 @@
     setShowEditCategory(false);
   }
 
+  const handleDeleteQuestionClick = () => {
+    setShowDeleteQuestion(true);
+  }
+
+  const handleCloseDeleteQuestion = () => {
+    setShowDeleteQuestion(false);
+  }
+
   const handleChangeUserDataClick = () => {
     setShowChangeUserData(true);
   }
@@ -92,6 +101,7 @@
             <md-filled-tonal-button id='primaryTonalButton' onClick={handleAddQuestionClick} class='mt-3'>Add question</md-filled-tonal-button>
             <md-filled-tonal-button id='primaryTonalButton' onClick={handleAddCategoryClick} class='mt-3'>Add category</md-filled-tonal-button>
             <md-filled-tonal-button id='primaryTonalButton' onClick={handleEditCategoryClick} class='mt-3'>Edit category</md-filled-tonal-button>
+            <md-filled-tonal-button id='primaryTonalButton' onClick={handleDeleteQuestionClick} class='mt-3'>Delete question</md-filled-tonal-button>
             <md-filled-tonal-button id='primaryTonalButton' onClick={handleChangeUserDataClick} class='mt-3'>Edit profile</md-filled-tonal-button>
             <md-filled-tonal-button id='primaryTonalButton' onClick={handleLogoutClick} class='mt-3'>Log out</md-filled-tonal-button>
           </div>
@@ -110,9 +120,11 @@
         <AddCategoryModal show={showAddCategory} handleClose={handleCloseAddCategory} />
         <EditCategoryModal show={showEditCategory} handleClose={handleCloseEditCategory} />
         <ChangeUserDataModal show={showChangeUserData} handleClose={handleCloseChangeUserData} />
+        <DeleteQuestionModal show={showDeleteQuestion} handleClose={handleCloseDeleteQuestion} />
         </>
         );
     }
+    
     else if(sessionData != null){
       return (
         <>
@@ -159,4 +171,4 @@
 
   }
 
-  export default HomePanel;
+  export default ProfilePanel;
